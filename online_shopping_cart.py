@@ -60,12 +60,11 @@ class ShoppingCart:
             print("SHOPPING CART IS EMPTY\n")
         else:
             print("{}\'s Shopping Cart - {}".format(self.customer_name, self.current_date))
-            print("Number of Items: {}\n".format(self.get_num_items_in_cart()))
+            print("Number of Items: {}".format(self.get_num_items_in_cart()))
             for item in self.cart_items:
                 item.print_item_cost()
 
-            total = self.get_cost_of_cart()
-            print("Total: ${:.2f}".format(total))
+            print("Total: ${:.2f}".format(self.get_cost_of_cart()))
 
     def print_descriptions(self):
         print("{}\'s Shopping Cart - {}".format(self.customer_name, self.current_date))
@@ -75,14 +74,18 @@ class ShoppingCart:
 
 if __name__ == '__main__':
     def print_menu(cart):
+        menu_options = {
+            'a' : "Add item to cart",
+            'r' : "Remove item from cart",
+            'c' : "Change item quantity",
+            'i' : "Output items' descriptions",
+            'o' : "Output shopping cart",
+            'q' : "Quit"
+        }
         while True:
             print("\nMENU")
-            print("a - Add item to cart")
-            print("r - Remove item from cart")
-            print("c - Change item quantity")
-            print("i - Output items' descriptions")
-            print("o - Output shopping cart")
-            print("q - Quit")
+            for key, value in menu_options.items():
+                print("{} - {}".format(key, value))
             print("\n")
 
             choice = input("Choose an option:\n")
@@ -105,12 +108,11 @@ if __name__ == '__main__':
     date = input("Enter today's date (ex. December 23, 2023):\n")
 
     cart = ShoppingCart(name, date)
-    print("\n")
 
     num_items = 2
     total = 0
     for i in range(num_items):
-        print('Item {}'.format(i + 1))
+        print('\nItem {}'.format(i + 1))
         item_name = input('Enter the item name (ex: apple, Chips): \n')
         item_price = float(input('Enter the item price (ex: 1, 2.38): \n'))
         item_quantity = int(input('Enter the item quantity (ex: 1, 2): \n'))
